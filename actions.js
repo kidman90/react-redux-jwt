@@ -73,21 +73,21 @@ export function loginUser(creds) {
     dispatch(requestLogin(creds))
     return fetch('http://localhost:3001/sessions/create', config)
       .then(response =>
-        response.json()
+        response.text()
           .then(user => ({ user, response }))
       ).then(({ user, response }) => {
         if (!response.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(loginError(user.message))
+          dispatch(loginError(user))
           return Promise.reject(user)
         }
         else {
           // If login was successful, set the token in local storage
-          localStorage.setItem('id_token', user.id_token)
+          localStorage.setItem('id_token', JSON.parse(user).id_token)
 
           // Dispatch the success action
-          dispatch(receiveLogin(user))
+          dispatch(receiveLogin(JSON.parse(user)))
         }
       }).catch(err => console.log("Error: ", err))
   }

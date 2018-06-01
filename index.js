@@ -11,6 +11,7 @@ import thunkMiddleware from 'redux-thunk'
 let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 
 let store = createStoreWithMiddleware(quotesApp)
+window.store = store
 
 let rootElement = document.getElementById('root')
 
