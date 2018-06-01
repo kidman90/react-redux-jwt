@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { loginUser, fetchQuote, fetchSecretQuote } from '../actions'
 import Login from '../components/Login'
 import Navbar from '../components/Navbar'
-// import Quotes from '../components/Quotes'
+import Quotes from '../components/Quotes'
 
 class App extends Component {
-  
+
   render() {
     const { dispatch, quote, isAuthenticated, errorMessage, isSecretQuote } = this.props
     return (
@@ -16,7 +16,7 @@ class App extends Component {
           errorMessage={errorMessage}
           dispatch={dispatch}
         />
-        {/* <div className='container'>
+        <div className='container'>
           <Quotes
             onQuoteClick={() => dispatch(fetchQuote())}
             onSecretQuoteClick={() => dispatch(fetchSecretQuote())}
@@ -24,7 +24,7 @@ class App extends Component {
             quote={quote}
             isSecretQuote={isSecretQuote}
           />
-        </div> */}
+        </div>
       </div>
     )
   }
@@ -39,11 +39,11 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
-  
+
   const { quotes, auth } = state
   const { quote, authenticated } = quotes
   const { isAuthenticated, errorMessage } = auth
-  
+
   return {
     quote,
     isSecretQuote: authenticated,
